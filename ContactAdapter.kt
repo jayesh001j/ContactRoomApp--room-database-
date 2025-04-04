@@ -5,11 +5,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactroomapp.databinding.ItemContactBinding
 
-class ContactAdapter(private val contactList: List<Contact>) :
-    RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+class ContactAdapter(
+    private val contactList: List<Contact>,
+    private val listener: OnItemClickListener
+) : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
+
+    interface OnItemClickListener {
+        fun onItemLongClick(contact: Contact)
+    }
 
     inner class ContactViewHolder(val binding: ItemContactBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.root.setOnLongClickListener {
+                listener.onItemLongClick(contactList[adapterPosition])
+                true
+            }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val binding = ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)

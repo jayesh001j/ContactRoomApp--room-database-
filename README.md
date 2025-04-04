@@ -1,4 +1,4 @@
-# ContactRoomApp--room-database-# ContactRoomApp
+# ContactRoomApp
 
 An Android application built using Kotlin and Room Database that allows users to store and view contact details including name, contact number, and email address.
 

@@ -9,4 +9,10 @@ interface ContactDao {
 
     @Query("SELECT * FROM contacts")
     suspend fun getAllContacts(): List<Contact>
+
+    @Update
+    suspend fun updateContact(contact: Contact)
+
+    @Delete
+    suspend fun deleteContact(contact: Contact)
 }
